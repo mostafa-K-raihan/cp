@@ -1,31 +1,16 @@
-a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-sums = []
-
-for subLen in range(2, 9):
-    for i in range(9 - subLen):
-        sub = a[i: i+subLen-1]
-        for k in range(subLen-1, 9):
-            copy = [x for x in sub]
-            copy.append(a[k])
-            sums.append((sum(copy), copy))
-            
-
 for _ in range(int(input())):
     n = int(input())
+    if (n > 45):
+        print(-1)
+        continue
+    start = 9
 
-    if (n <= 9):
-        print(n)
+    res = ''
+    while(n > start):
+        res = str(start) + res
+        n -= start
+        start -= 1
+    if (n > 0):
+        res = str(n) + res
 
-    else:
-        found = False
-        for i in range(len(sums)):
-            item = sums[i]
-            if (item[0] == n):
-              l = item[1]
-              print(''.join(map(str,l)))
-              found = True
-              break
-
-        if (not found):
-            print(-1)
+    print(res)
